@@ -28,16 +28,27 @@
 	 <div class="loading"></div>
 	   <button onclick="getIt()">Ajax call</button>
 	 </div>
-	 <div class="bg" style="width:600px;height:600px"> </div>
-	
+	 <!--div class="bg" style="width:600px;height:600px"> </div-->
+	 <div class="loader">
+		 <div class="preloader-wrapper big">
+			<div class="spinner-layer spinner-blue-only">
+			  <div class="circle-clipper left">
+				<div class="circle"></div>
+			  </div><div class="gap-patch">
+				<div class="circle"></div>
+			  </div><div class="circle-clipper right">
+				<div class="circle"></div>
+			  </div>
+			</div>
+		  </div>
+		  </div>
 
 	</body>
 	<script>
 	$(".loading").fadeOut("slow");
 	function getIt(){
-		$(".loading").show("slow");
-		$('.hide').removeClass('hide')
-			setInterval(function(){
+		$('.preloader-wrapper').addClass('active')
+			setTimeout(function(){
 			
 					$.ajax({
 			url:"https://perk.brio.co.in/api/BingImageURL",
@@ -46,8 +57,7 @@
 			success:function(data)
 			{
 			  $('.bg').css('background-image','url('+data[0].bingURL+')','opacity','1');
-			  $('.preloader-wrapper').addClass('hide')
-			  $(".loading").fadeOut("slow")
+			  $('.preloader-wrapper').removeClass('active')
 			}
 			})
 					  
